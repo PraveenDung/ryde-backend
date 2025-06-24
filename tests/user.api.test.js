@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const userRoutes = require('../src/routes/userRoutes');
 const User = require('../src/models/User');
+require('dotenv').config();
 
 const app = express();
 app.use(express.json());
