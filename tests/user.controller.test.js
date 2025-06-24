@@ -1,5 +1,8 @@
+// Unit test for user controller using mocked Mongoose model
 const { createUser } = require('../src/controllers/userController');
 const User = require('../src/models/User');
+
+// Mock the User model methods
 jest.mock('../src/models/User');
 
 describe('Unit Test: createUser', () => {
@@ -10,6 +13,7 @@ describe('Unit Test: createUser', () => {
       json: jest.fn()
     };
 
+    // Simulate successful DB save
     User.create.mockResolvedValue({ _id: '123', name: 'Mocky' });
 
     await createUser(req, res);
@@ -26,6 +30,7 @@ describe('Unit Test: createUser', () => {
       json: jest.fn()
     };
 
+    // Simulate DB validation error
     User.create.mockRejectedValue(new Error('Validation error'));
 
     await createUser(req, res);
